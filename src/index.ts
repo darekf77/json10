@@ -55,6 +55,9 @@ export class JSON10 {
 
   public static merge(newValue, existedValue) {
     let className = CLASS.getNameFromObject(existedValue);
+    if (className === 'Date') {
+      return new Date(newValue)
+    }
     let classFunction = CLASS.getBy(className)
     if (_.isFunction(classFunction)) {
       let res = new (classFunction as any)();
