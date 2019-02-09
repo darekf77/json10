@@ -1,7 +1,7 @@
 {
   "name": "json10",
   "description": "Handle circural references, comments and many more inside JSON",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "tnp": {
     "type": "isomorphic-lib",
     "isCommandLineToolOnly": true,
