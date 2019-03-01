@@ -1,8 +1,6 @@
 {
-  "name": "json10",
-  "description": "Handle circural references, comments and many more inside JSON",
-  "version": "0.0.6",
   "tnp": {
+    "resources": [],
     "type": "isomorphic-lib",
     "isCommandLineToolOnly": true,
     "overrided": {
@@ -27,6 +25,9 @@
       ]
     }
   },
+  "name": "json10",
+  "description": "Handle circural references, comments and many more inside JSON",
+  "version": "0.0.6",
   "scripts": {
     "test": "mocha --require ts-node/register src/**/*.spec.ts",
     "test:watch": "mocha --compilers ts-node/register src/**/*.spec.ts --watch"
@@ -44,5 +45,10 @@
   "bugs": {
     "url": "https://github.com/darekf77/json10/issues"
   },
-  "homepage": "https://github.com/darekf77/json10#readme"
+  "homepage": "https://github.com/darekf77/json10#readme",
+  "husky": {
+    "hooks": {
+      "pre-push": "tnp deps:show:if:standalone"
+    }
+  }
 }

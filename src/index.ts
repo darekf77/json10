@@ -30,26 +30,37 @@ export class JSON10 {
     let jsonstring = jsonStrinigySafe(anyJSON)
     let json = JSON.parse(jsonstring);
 
-    walk.Object(json, (value, lodashPath, changeValueTo) => {
+    walk.Object(json, (value, lodashPath, changeValueTo, isGetter) => {
 
-      if (_.isString(value) && value.startsWith('[Circular')) {
-
-        const circ: Circ = {
-          pathToObj: lodashPath,
-          circuralTargetPath: this._getCircuralObjectPath(value)
+      if (isGetter) {
+        if (_.isArray(value)) {
+          value.forEach(vv => this.cleaned(vv))
+        } else if (_.isObject(value)) {
+          this.cleaned(value)
         }
-        this.circural.push(circ)
-
-        changeValueTo(null);
-
       } else {
-        const v = _.get(anyJSON, lodashPath)
-        const newValue = this.merge(value, v)
-        changeValueTo(newValue)
+        if (_.isString(value) && value.startsWith('[Circular')) {
+
+          const circ: Circ = {
+            pathToObj: lodashPath,
+            circuralTargetPath: this._getCircuralObjectPath(value)
+          }
+          this.circural.push(circ)
+
+          changeValueTo(null);
+
+        } else {
+          const v = _.get(anyJSON, lodashPath)
+          const newValue = this.merge(value, v)
+          changeValueTo(newValue)
+        }
       }
-    })
+
+    }, true)
 
     let res = this.merge(json, anyJSON)
+
+
     return res;
   }
 
