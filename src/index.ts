@@ -78,7 +78,7 @@ export class JSON10 {
               path: lodashPath,
               target: value
             } as InDBType);
-            _.set(result, lodashPath,  _.cloneDeep(value))
+            _.set(result, lodashPath, _.cloneDeep(value))
           }
 
         }
@@ -103,16 +103,18 @@ export class JSON10 {
 
   public static parse(json: string, circs: Circ[] = []) {
     let res = JSON.parse(json);
-    circs.forEach(({ circuralTargetPath, pathToObj }) => {
+    if (_.isArray(circs)) {
+      circs.forEach(({ circuralTargetPath, pathToObj }) => {
 
-      if (circuralTargetPath === '') {
-        _.set(res, pathToObj, res)
-      } else {
-        let v = _.get(res, circuralTargetPath);
-        _.set(res, pathToObj, v)
-      }
+        if (circuralTargetPath === '') {
+          _.set(res, pathToObj, res)
+        } else {
+          let v = _.get(res, circuralTargetPath);
+          _.set(res, pathToObj, v)
+        }
 
-    })
+      })
+    }
     return res;
   }
 
