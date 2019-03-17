@@ -31,22 +31,30 @@ export class JSON10 {
   }
 
 
-  public static cleaned(json, onCircs?: (circs: Circ[]) => any) {
+  public static cleaned(json, onCircs?: (circs: Circ[]) => any, options?: { ommitProperties?: string[] }) {
     // console.log('BETTER SRUGUB', json)
     const result = _.isArray(json) ? [] : {}
     const classFN = CLASS.OBJECT(json).isClassObject && CLASS.getFromObject(json);
     const db = {}
     const stack = [];
     const circural: Circ[] = [];
+    const { ommitProperties } = options;
 
     walk.Object(json, (value, lodashPath, changeValueTo, options) => {
+
+      if (_.isArray(ommitProperties) && !!ommitProperties.find(p => lodashPath.startsWith(p))) {
+        // console.log("SKIPPING", lodashPath)
+        _.set(result, lodashPath, value)
+        options.skipObject()
+        return;
+      }
+
       // console.log(lodashPath)
       if (_.isObject(value)) {
-
-        if (CLASS.OBJECT(value).isClassObject) {
+        let indexValue = CLASS.OBJECT(value).indexValue
+        if (CLASS.OBJECT(value).isClassObject && !_.isUndefined(indexValue)) {
           let className = CLASS.getNameFromObject(value);
-          let id = CLASS.OBJECT(value).indexValue
-          let p = `${className}.id_${id}`;
+          let p = `${className}.id_${indexValue}`;
           const inDB: InDBType = _.get(db, p);
           if (inDB && CLASS.OBJECT(inDB.target).isEqual(value)) {
             const circ: Circ = {

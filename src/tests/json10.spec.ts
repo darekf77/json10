@@ -178,7 +178,7 @@ describe('Json 10 circural references tests', () => {
 
     const cleanNormal = JSON10.cleaned(arr) as User[]
 
-    log.i('cleanNormal',cleanNormal)
+    // log.i('cleanNormal', cleanNormal)
 
 
     // log.i(cleanBatter)
@@ -186,6 +186,29 @@ describe('Json 10 circural references tests', () => {
     expect(cleanNormal[1]).to.be.null;
     expect(cleanNormal[0].friend).to.be.null;
     expect(cleanNormal[0].realId).to.be.eq(jedynka);
+  })
+
+
+  it('Should hadnle ommiting properties', async () => {
+    const jedynka = 'jedynka'
+    let u1 = new User(111, jedynka)
+    // let u2 = new User(222)
+    // let u3 = new User(333)
+    let u4asu1 = new User(111, 'czwórka')
+
+    u1.friend = u4asu1;
+    u4asu1.friend = u1;
+
+    const obj = { u1, u4asu1, hello: u1 }
+
+    const cleanNormal = JSON10.cleaned(obj, void 0, ['hello']) as any;
+
+    // log.i('ommittt', cleanNormal)
+
+
+    // log.i(cleanBatter)
+
+    expect(cleanNormal.hello).to.be.instanceOf(User)
   })
 
   // xit("Should handle normal", async () => {
