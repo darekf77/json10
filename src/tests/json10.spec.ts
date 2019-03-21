@@ -95,15 +95,21 @@ describe('Json 10 circural references tests', () => {
     test.users = [u1, u2]
 
     // log.i('test', test)
-    let cleaned = JSON10.cleaned(test)
-    expect(_.isNull(cleaned.users[0].test.users)).to.be.true;
-    // console.log('circs', JSON10.circural)
+    let cc = []
+    let cleaned = JSON10.cleaned(test, ccc => cc = ccc)
     // log.i('cleaned', cleaned)
+    // log.i('cc', cc)
+    expect(_.isNull(cleaned.users[0].test)).to.be.true;
+    // console.log('circs', JSON10.circural)
+
     // log.i('test', test)
 
-    let stringify = JSON10.stringify(test)
+    let circural = []
+    let stringify = JSON10.stringify(test, void 0, void 0, circs => {
+      circural = circs;
+    })
     // console.log('circs', JSON10.circural)
-    let after: Test = JSON10.parse(stringify, JSON10.circural)
+    let after: Test = JSON10.parse(stringify, circural)
     // log.i('after', after)
 
 
@@ -201,14 +207,16 @@ describe('Json 10 circural references tests', () => {
 
     const obj = { u1, u4asu1, hello: u1 }
 
-    const cleanNormal = JSON10.cleaned(obj, void 0, ['hello']) as any;
+    let cc = []
+    const cleanNormal = JSON10.cleaned(obj, ccc => (cc = ccc)) as any;
 
     // log.i('ommittt', cleanNormal)
+    // log.i('cc', cc)
 
 
     // log.i(cleanBatter)
 
-    expect(cleanNormal.hello).to.be.instanceOf(User)
+    expect(cleanNormal.u1).to.be.instanceOf(User)
   })
 
   // xit("Should handle normal", async () => {

@@ -1,111 +1,64 @@
 
 
 import * as _ from 'lodash';
-import { walk } from 'lodash-walk-object';
+import { walk, Circ } from 'lodash-walk-object';
+export { Circ } from 'lodash-walk-object';
 import { CLASS } from 'typescript-class-helpers';
-import { Log } from 'ng2-logger'
-const log = Log.create('JSON10')
+// import { Log } from 'ng2-logger'
+// const log = Log.create('JSON10')
 
-export type InDBType = { target: any; path: string; };
-export type Circ = { pathToObj: string; circuralTargetPath: string; };
-
-function type(o) {
-  if (Array.isArray(o)) {
-    return 'array'
-  }
-  return typeof o;
-}
+// let counter = 0
 
 export class JSON10 {
-  public static circural: Circ[] = [];
 
-  public static structureArray(anyJSON: Object) {
+  public static structureArray(anyJSON: Object, options?: { include?: string[]; exclude?: string[] }) {
     let pathes = []
-    walk.Object(anyJSON, (value, lodashPath) => {
+    const { include, exclude } = options || {} as any;
+    walk.Object(anyJSON, (value, lodashPath, changeValue, options) => {
+
       if (!_.isUndefined(value)) {
         pathes.push(lodashPath)
       }
 
-    })
+    }, { include, exclude, checkCircural: true })
     return pathes;
   }
 
 
-  public static cleaned(json, onCircs?: (circs: Circ[]) => any, options?: { ommitProperties?: string[] }) {
+  public static cleaned(json, onCircs?: (circs: Circ[]) => any, options?:
+    {
+      exclude?: string[];
+      include?: string[];
+      breadthWalk?: boolean;
+    }) {
     // console.log('BETTER SRUGUB', json)
     const result = _.isArray(json) ? [] : {}
     const classFN = CLASS.OBJECT(json).isClassObject && CLASS.getFromObject(json);
-    const db = {}
-    const stack = [];
-    const circural: Circ[] = [];
-    const { ommitProperties } = options;
 
-    walk.Object(json, (value, lodashPath, changeValueTo, options) => {
+    const { exclude, include, breadthWalk } = options || { exclude: [], include: [], breadthWalk: false };
 
-      if (_.isArray(ommitProperties) && !!ommitProperties.find(p => lodashPath.startsWith(p))) {
-        // console.log("SKIPPING", lodashPath)
-        _.set(result, lodashPath, value)
-        options.skipObject()
-        return;
-      }
-
+    const { circs } = walk.Object(json, (value, lodashPath, changeValueTo, options) => {
       // console.log(lodashPath)
-      if (_.isObject(value)) {
-        let indexValue = CLASS.OBJECT(value).indexValue
-        if (CLASS.OBJECT(value).isClassObject && !_.isUndefined(indexValue)) {
-          let className = CLASS.getNameFromObject(value);
-          let p = `${className}.id_${indexValue}`;
-          const inDB: InDBType = _.get(db, p);
-          if (inDB && CLASS.OBJECT(inDB.target).isEqual(value)) {
-            const circ: Circ = {
-              pathToObj: lodashPath,
-              circuralTargetPath: inDB.path
-            }
-            circural.push(circ)
-            _.set(result, lodashPath, null)
-            options.skipObject()
-          } else {
-            _.set(db, p, {
-              path: lodashPath,
-              target: value
-            } as InDBType)
-            _.set(result, lodashPath, _.cloneDeep(value))
-          }
-        } else {
-          const inStack = stack.find((c: InDBType) => c.target === value);
-          if (!!inStack) {
-            const circ: Circ = {
-              pathToObj: lodashPath,
-              circuralTargetPath: inStack.path
-            }
-            circural.push(circ)
-            _.set(result, lodashPath, null)
-            options.skipObject()
-          } else {
-            stack.push({
-              path: lodashPath,
-              target: value
-            } as InDBType);
-            _.set(result, lodashPath, _.cloneDeep(value))
-          }
-
-        }
+      // if (counter++ === 5) {
+      //   process.exit(0)
+      // }
+      if (_.isObject(value) && options.isCircural) {
+        _.set(result, lodashPath, null)
       } else {
-        _.set(result, lodashPath, value)
+        _.set(result, lodashPath, _.cloneDeep(value))
       }
 
-    });
+    }, { include, exclude, breadthWalk, checkCircural: true });
 
     if (_.isFunction(onCircs)) {
-      onCircs(circural)
+      onCircs(circs)
     }
-    this.circural = circural;
-    // log.i('db', db)
+
     return _.isFunction(classFN) ? _.merge(new (classFN as any)(), result) : result;
   }
 
-  public static stringify(anyJSON: Object, replace?: any, spaces?: number) {
-    const json = this.cleaned(anyJSON);
+  public static stringify(anyJSON: Object, replace?: any, spaces?: number, onCircs?: (circs: Circ[]) => any) {
+    const json = this.cleaned(anyJSON, onCircs);
     return JSON.stringify(json, replace, spaces);
   }
 
