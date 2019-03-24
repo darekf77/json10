@@ -1,8 +1,8 @@
 
 
 import * as _ from 'lodash';
-import { walk, Circ } from 'lodash-walk-object';
-export { Circ } from 'lodash-walk-object';
+import { walk, Models } from 'lodash-walk-object';
+export type Circ = Models.Circ;
 import { CLASS } from 'typescript-class-helpers';
 // import { Log } from 'ng2-logger'
 // const log = Log.create('JSON10')
@@ -14,7 +14,7 @@ export class JSON10 {
   public static structureArray(anyJSON: Object, options?: { include?: string[]; exclude?: string[] }) {
     let pathes = []
     const { include, exclude } = options || {} as any;
-    walk.Object(anyJSON, (value, lodashPath, changeValue, options) => {
+    walk.Object(anyJSON, (value, lodashPath) => {
 
       if (!_.isUndefined(value)) {
         pathes.push(lodashPath)
@@ -38,10 +38,7 @@ export class JSON10 {
     const { exclude, include, breadthWalk } = options || { exclude: [], include: [], breadthWalk: false };
 
     const { circs } = walk.Object(json, (value, lodashPath, changeValueTo, options) => {
-      // console.log(lodashPath)
-      // if (counter++ === 5) {
-      //   process.exit(0)
-      // }
+
       if (_.isObject(value) && options.isCircural) {
         _.set(result, lodashPath, null)
       } else {
