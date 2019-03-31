@@ -11,7 +11,9 @@ import { Log } from 'ng2-logger'
 const log = Log.create('Spec JSON10')
 // log == 500
 
-@CLASS.NAME('Proj', 'location')
+@CLASS.NAME('Proj', {
+  uniqueKey: 'location'
+})
 class Proj {
   static locationsID = 0;
   constructor() {
