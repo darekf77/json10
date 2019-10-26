@@ -21,7 +21,9 @@
         "lodash-walk-object",
         "typescript-class-helpers",
         "@types/lodash"
-      ]
+      ],
+      "ignoreDepsPattern": [],
+      "dependencies": {}
     }
   },
   "name": "json10",
