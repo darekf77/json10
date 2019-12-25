@@ -2,7 +2,7 @@ import * as _ from 'lodash';
 import { describe, before } from 'mocha'
 import { expect } from 'chai';
 import { CLASS } from 'typescript-class-helpers';
-import { CLASSNAME } from 'typescript-class-helpers/classname';
+
 import * as jsonStrinigySafe from 'json-stringify-safe';
 
 
