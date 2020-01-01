@@ -13,7 +13,8 @@
       ],
       "ignoreDepsPattern": [],
       "dependencies": {}
-    }
+    },
+    "linkedProjects": []
   },
   "name": "json10",
   "description": "Handle circural references, comments and many more inside JSON",
