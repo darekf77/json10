@@ -12,7 +12,8 @@
         "@types/lodash"
       ],
       "ignoreDepsPattern": [],
-      "dependencies": {}
+      "dependencies": {},
+      "linkedFolders": []
     },
     "linkedProjects": [],
     "libReleaseOptions": {
