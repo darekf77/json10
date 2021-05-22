@@ -1,6 +1,4 @@
-
-
-import * as _ from 'lodash';
+import { _ } from 'tnp-core';
 import { walk, Models } from 'lodash-walk-object';
 export type Circ = Models.Circ;
 import { CLASS } from 'typescript-class-helpers';

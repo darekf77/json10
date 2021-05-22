@@ -5,10 +5,7 @@
   "overrided": {
     "includeAsDev": "*",
     "includeOnly": [
-      "lodash",
-      "lodash-walk-object",
-      "typescript-class-helpers",
-      "@types/lodash"
+      "lodash-walk-object"
     ],
     "ignoreDepsPattern": [],
     "dependencies": {},

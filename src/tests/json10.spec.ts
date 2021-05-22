@@ -1,5 +1,5 @@
-import * as _ from 'lodash';
-import { describe, before } from 'mocha'
+import { _ } from 'tnp-core';
+import { describe, before, it, beforeEach } from 'mocha'
 import { expect } from 'chai';
 import { CLASS } from 'typescript-class-helpers';
 
