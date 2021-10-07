@@ -187,7 +187,7 @@
     "jasmine-core": "3.5.0",
     "jasmine-spec-reporter": "4.2.1",
     "json-stringify-safe": "5.0.1",
-    "json10": "~1.0.26",
+    "json10": "~1.0.27",
     "json5": "2.1.3",
     "json5-writer": "0.2.0",
     "karma": "5.0.0",
@@ -291,5 +291,5 @@
   },
   "license": "MIT",
   "private": false,
-  "lastBuildTagHash": "dcb3c7e6f0f3ad675d82fa513dc549aa1f0486de"
+  "lastBuildTagHash": "319c3d4ea232fbd3538c9833c1edd5b3dea3d16e"
 }
