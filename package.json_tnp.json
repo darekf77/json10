@@ -1,7 +1,7 @@
 {
   "resources": [],
   "type": "isomorphic-lib",
-  "version": "v2",
+  "version": "v3",
   "overrided": {
     "includeAsDev": "*",
     "includeOnly": [
