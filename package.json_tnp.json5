@@ -1,10 +1,5 @@
 {
   "resources": [],
-  "type": "isomorphic-lib",
-  "version": "v3",
-  "additionalNpmNames": [
-    "firedev-json"
-  ],
   "overrided": {
     "includeAsDev": "*",
     "includeOnly": [
@@ -20,6 +15,11 @@
     "obscure": false,
     "ugly": false
   },
+  "type": "isomorphic-lib",
+  "version": "v3",
+  "additionalNpmNames": [
+    "firedev-json"
+  ],
   "license": "MIT",
   "private": false,
   "scripts": {
