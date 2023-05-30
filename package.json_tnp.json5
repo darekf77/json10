@@ -3,12 +3,15 @@
 
   "overrided": {
     "includeAsDev": [],
+
     "includeOnly": [
       "lodash-walk-object"
     ],
+
     "ignoreDepsPattern": [],
     "dependencies": {},
-    "linkedFolders": []
+    "linkedFolders": [],
+    'npmFixes': [],
   },
 
   "linkedProjects": [],
