@@ -68,7 +68,7 @@
   },
   "license": "MIT",
   "private": false,
-  "lastBuildTagHash": "5726fb4fbea8128364e1b5fe4bcf90e1e6053662",
+  "lastBuildTagHash": "543dbd8b242cf9324fc3c56de533c4fcfae51c8f",
   "devDependencies": {
     "@angular-devkit/build-angular": "~16.0.5",
     "@angular-devkit/core": "~16.0.5",
@@ -216,7 +216,7 @@
     "jimp": "0.22.8",
     "jscodeshift": "0.6.3",
     "json-stringify-safe": "5.0.1",
-    "json10": "~16.0.47",
+    "json10": "~16.0.48",
     "json10-writer": "~16.0.43",
     "json5": "2.2.1",
     "json5-writer": "0.2.0",
