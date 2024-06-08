@@ -47,7 +47,7 @@
   },
   "name": "json10",
   "description": "Handle circural references, comments and many more inside JSON",
-  "version": "16.444.2",
+  "version": "16.444.3",
   "scripts": {
     "test": "mocha --require ts-node/register src/**/*.spec.ts",
     "test:watch": "mocha --compilers ts-node/register src/**/*.spec.ts --watch"
