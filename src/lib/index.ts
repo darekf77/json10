@@ -1,7 +1,7 @@
-import { _ } from 'tnp-core';
-import { walk, Models } from 'lodash-walk-object';
+import { _ } from 'tnp-core/src';
+import { walk, Models } from 'lodash-walk-object/src';
 export type Circ = Models.Circ;
-import { CLASS } from 'typescript-class-helpers';
+import { CLASS } from 'typescript-class-helpers/src';
 // import { Log } from 'ng2-logger'
 // const log = Log.create('JSON10')
 
