@@ -1,6 +1,6 @@
-# firedev-json (json10)
+# taon-json (json10)
 
-- Part of [firedev.io](https://github.com/darekf77/
+- Part of [taon.io](https://github.com/darekf77/
 - Helpers for OOP (Object Oriented Programming) in TypeScript.
 - JSON10 is a better version of well know JSON.
 - Purpose:
@@ -9,12 +9,12 @@
   + functionality similar to https://json5.org/, but with option to strinfify again to mix comments/json version
 
 ## Usage
-- in firedev isomorphic libs/apps or any NodeJS apps/libs:
+- in taon isomorphic libs/apps or any NodeJS apps/libs:
 ```ts
 import { JSON10 } from 'json10';
 ```
 
-- in any frontend browser apps (except firedev lib/apps)
+- in any frontend browser apps (except taon lib/apps)
 ```ts
 import { JSON10 } from 'json10/browser';
 ```
