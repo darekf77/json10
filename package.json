@@ -43,7 +43,8 @@
       "docs",
       "documentation"
     ],
-    "workerPlugins": {}
+    "workerPlugins": {},
+    "packageJsonOverride": {}
   },
   "name": "json10",
   "description": "Handle circural references, comments and many more inside JSON",
