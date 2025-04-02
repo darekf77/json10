@@ -1,9 +1,9 @@
 {
+  "resources": [],
   "type": "isomorphic-lib",
   "version": "v18",
   "dependenciesNamesForNpmLib": ["lodash-walk-object"],
   "additionalNpmNames": ["taon-json"],
-  "resources": [],
 
   "packageJsonOverride": {
     "author": "Dariusz Filipiak",
