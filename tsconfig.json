@@ -1,10 +1,16 @@
 {
   "extends": "./tsconfig.isomorphic.json",
   "compilerOptions": {
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
     "strictNullChecks": false,
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "paths": {
+      "json10": [
+        "./src/lib"
+      ],
+      "json10/*": [
+        "./src/lib/*"
+      ]
+    }
   },
   "include": [
     "src/**/*"
