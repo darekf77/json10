@@ -4,10 +4,16 @@
     "strictNullChecks": false,
     "rootDir": "./src",
     "paths": {
-      "json10": [
+      "@lib": [
         "./src/lib"
       ],
-      "json10/*": [
+      "@lib/*": [
+        "./src/lib/*"
+      ],
+      "json10/src": [
+        "./src/lib"
+      ],
+      "json10/src/*": [
         "./src/lib/*"
       ]
     }
