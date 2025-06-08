@@ -3,6 +3,7 @@
   "version": "v19",
   "dependenciesNamesForNpmLib": ["lodash-walk-object"],
   "additionalNpmNames": ["taon-json"],
+  "appId": "com.domain.example.json10",
 
   "autoReleaseConfigAllowedItems": [{
     "artifactName": "npm-lib-and-cli-tool"
