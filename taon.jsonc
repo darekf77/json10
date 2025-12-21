@@ -1,6 +1,6 @@
 {
   "type": "isomorphic-lib",
-  "version": "v19",
+  "version": "v21",
   "dependenciesNamesForNpmLib": ["lodash-walk-object"],
   "additionalNpmNames": ["taon-json"],
   "appId": "com.domain.example.json10",
