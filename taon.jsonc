@@ -1,22 +1,30 @@
 {
   "type": "isomorphic-lib",
   "version": "v21",
-  "dependenciesNamesForNpmLib": ["lodash-walk-object"],
+  "dependenciesNamesForNpmLib": [],
   "additionalNpmNames": ["taon-json"],
   "appId": "com.domain.example.json10",
 
-  "autoReleaseConfigAllowedItems": [{
-    "artifactName": "npm-lib-and-cli-tool",
-    "taskName": "npm"
-  }],
+  "autoReleaseConfigAllowedItems": [
+    {
+      "artifactName": "npm-lib-and-cli-tool",
+      "taskName": "npm",
+    },
+  ],
 
+  "isomorphicDependenciesForNpmLib": [
+    "lodash-walk-object",
+    "tnp-core",
+    "typescript-class-helpers",
+  ],
+  "peerDependenciesNamesForNpmLib": [],
   "resources": [],
 
   "packageJsonOverride": {
     "author": "Dariusz Filipiak",
 
     "bugs": {
-      "url": "https://github.com/darekf77/json10/issues"
+      "url": "https://github.com/darekf77/json10/issues",
     },
 
     "description": "Handle circural references, comments and many more inside JSON",
@@ -27,12 +35,12 @@
 
     "repository": {
       "type": "git",
-      "url": "git+https://github.com/darekf77/json10.git"
+      "url": "git+https://github.com/darekf77/json10.git",
     },
 
     "scripts": {
       "test": "mocha --require ts-node/register src/**/*.spec.ts",
-      "test:watch": "mocha --compilers ts-node/register src/**/*.spec.ts --watch"
-    }
-  }
+      "test:watch": "mocha --compilers ts-node/register src/**/*.spec.ts --watch",
+    },
+  },
 }
