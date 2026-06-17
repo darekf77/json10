@@ -1,6 +1,6 @@
 {
   "name": "json10",
-  "version": "21.0.38",
+  "version": "21.0.39",
   "scripts": {
     "test": "mocha --require ts-node/register src/**/*.spec.ts",
     "test:watch": "mocha --compilers ts-node/register src/**/*.spec.ts --watch",
@@ -471,5 +471,9 @@
     "type": "git",
     "url": "git+https://github.com/darekf77/json10.git"
   },
-  "bin": {}
+  "bin": {
+    "json10": "bin/json10",
+    "json10-debug": "bin/json10-debug",
+    "json10-debug-brk": "bin/json10-debug-brk"
+  }
 }
