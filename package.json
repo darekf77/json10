@@ -485,5 +485,8 @@
     "json10": "bin/json10",
     "json10-debug": "bin/json10-debug",
     "json10-debug-brk": "bin/json10-debug-brk"
+  },
+  "devDependencies": {
+    "eslint-plugin-secure-coding": "5.1.3"
   }
 }

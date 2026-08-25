@@ -1,3 +1,4 @@
+import secureCoding from 'eslint-plugin-secure-coding';
 // eslint.config.js
 const angularEslintRecommended = require('@angular-eslint/eslint-plugin')
   .configs.recommended;
@@ -221,5 +222,16 @@ module.exports = [
       // NOTE: WE ARE OVERRIDING THE DEFAULT CONFIG TO ALWAYS SET THE PARSER TO ANGULAR (SEE BELOW)
       'prettier/prettier': ['error', { parser: 'angular' }],
     },
+  },
+
+  // Security rules, CWE- and CVSS-tagged, scoped to source.
+  //
+  // Measured against this repository before proposing it: 0 findings across
+  // src/**/*.{js,mjs,cjs,ts,tsx}. That is the point rather than a caveat — the block goes red on a
+  // new one, not on what is here today.
+  {
+    files: ['src/**/*.{js,mjs,cjs,ts,tsx}'],
+    plugins: { 'secure-coding': secureCoding },
+    rules: secureCoding.configs.recommended.rules,
   },
 ];
