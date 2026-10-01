@@ -54,7 +54,13 @@ export class JSON10 {
           _.set(result, lodashPath, _.cloneDeep(value));
         }
       },
-      { include, exclude, breadthWalk, checkCircural: true },
+      {
+        include,
+        exclude,
+        breadthWalk,
+        checkCircural: true,
+        walkGetters: false,
+      },
     );
 
     if (_.isFunction(onCircs)) {
