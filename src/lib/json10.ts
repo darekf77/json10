@@ -35,7 +35,7 @@ export class JSON10 {
       include?: string[];
       breadthWalk?: boolean;
     },
-  ) {
+  ): typeof json {
     // console.log('BETTER SRUGUB', json)
     const result = _.isArray(json) ? [] : {};
 
